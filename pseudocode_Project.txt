@@ -7,7 +7,7 @@ Declare const a_price = 80
 Declare const b_price = 150
 Declare const c_price = 175
 Declare total = 0
-Declare price = 0
+Declare price = 0.0
  
 Display "Pick from....."
 input choice
@@ -16,6 +16,43 @@ Switch (choice)
 	b. call signup
 	c. call guest
 	other try again
+    
+	Call Pick_Dates(checkin_Date, checkout_Date)
+    Call Room_Type(price)
+    total = (checkout_Date - checkin_Date) * price
+    Call Recipt(price, total, checkin_Date, checkout_Date)
+
+
+
+void signin ()
+	declare username
+	declare password
+	
+	display "Please enter your username"
+	input username
+	display "Please enter your password"
+	input password
+
+void signup ()
+	declare username
+	declare password
+	display "Welcome to Signup for Hotel Overlook" 
+	display "                                                                      "
+	display "                                                                      "
+	display "**********************************************************************"
+	display "Please enter your username"
+	input username
+	display "Please enter your password"
+	input password
+	
+	
+void guest ()
+	declare username
+	declare password
+	Display "Welcome guest, no sign-in required"
+
+
+int Pick_Dates (checkin_Date,checkout_Date)
 do {
 	Display "Input checkin date"
 	input Checkin_Date
@@ -28,6 +65,17 @@ Display "Input Checkout date"
 }
 while (checkout_Date > 2 AND checkout_Date < 31)
 
+
+
+
+int Recipt (price,total,checkin_Date,checkout_Date)
+
+
+
+
+
+
+string Room_Type (a_price,b_price,c_price)
 
 Switch (room_type)
 	a. Single...
@@ -44,3 +92,5 @@ Switch (room_type)
 	//Add a small note saying random amount of rooms avaiable
 	
 total = (checkout_Date - checkin_Date) * price
+
+
