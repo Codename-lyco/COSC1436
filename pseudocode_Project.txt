@@ -1,4 +1,11 @@
+								Orange = Declares
+								Green   = Switch
+								Blue = Calls
+								Red = Function Headers
+								Purple = Display/Input
 Start
+Main ()
+
 Declare Constant max_count = 20
 Declare floor1[max_count]
 Declare floor2[max_count]
@@ -17,11 +24,10 @@ Switch (choice)
 	c. call guest
 	other try again
     
-	Call Pick_Dates(checkin_Date, checkout_Date)
+    Call Pick_Dates(checkin_Date, checkout_Date)
     Call Room_Type(price)
     total = (checkout_Date - checkin_Date) * price
-    Call Recipt(price, total, checkin_Date, checkout_Date)
-
+    Call Receipt(price, total, checkin_Date, checkout_Date)
 
 
 void signin ()
@@ -67,30 +73,27 @@ while (checkout_Date > 2 AND checkout_Date < 31)
 
 
 
-
-int Recipt (price,total,checkin_Date,checkout_Date)
-
-
-
-
-
-
 string Room_Type (a_price,b_price,c_price)
-
+Declare int available 
 Switch (room_type)
 	a. Single...
 	Price, Random picked location based on type
 	price = a_price
-	//Add a small note saying random amount of rooms avaiable
+	Available = random(1-20)
+	Display “There are “+available “rooms available for your dates”
 	b. Double....
 	Price, Random picked location based on type
 	price = b_price
-	//Add a small note saying random amount of rooms avaiable
+Available = random(1-20)
+	Display “There are “+available “rooms available for your dates”
 	c. Suite...
 	Price, Random picked location based on type
 	price = c_price
-	//Add a small note saying random amount of rooms avaiable
-	
-total = (checkout_Date - checkin_Date) * price
+Available = random(1-20)	
+	Display “There are “+available “rooms available for your dates”
 
-
+int Receipt (price,total,checkin_Date,checkout_Date)
+  Display "--- Receipt ---"
+    Display "Room type price: $" + price
+    Display "Total nights: " + (checkout_Date - checkin_Date)
+    Display "Total amount due: $" + total
