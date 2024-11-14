@@ -1,0 +1,46 @@
+Start
+Declare Constant max_count = 20
+Declare floor1[max_count]
+Declare floor2[max_count]
+Declare floor3[max_count]
+Declare const a_price = 80
+Declare const b_price = 150
+Declare const c_price = 175
+Declare total = 0
+Declare price = 0
+ 
+Display "Pick from....."
+input choice
+Switch (choice)
+	a: Call signin
+	b. call signup
+	c. call guest
+	other try again
+do {
+	Display "Input checkin date"
+	input Checkin_Date
+}
+while (checkin_Date > 1 AND checkin_Date < 31)
+
+do {
+Display "Input Checkout date"
+	input Checkout_Date
+}
+while (checkout_Date > 2 AND checkout_Date < 31)
+
+
+Switch (room_type)
+	a. Single...
+	Price, Random picked location based on type
+	price = a_price
+	//Add a small note saying random amount of rooms avaiable
+	b. Double....
+	Price, Random picked location based on type
+	price = b_price
+	//Add a small note saying random amount of rooms avaiable
+	c. Suite...
+	Price, Random picked location based on type
+	price = c_price
+	//Add a small note saying random amount of rooms avaiable
+	
+total = (checkout_Date - checkin_Date) * price
