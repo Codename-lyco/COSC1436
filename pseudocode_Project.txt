@@ -1,12 +1,5 @@
-								Orange = Declares
-								Green   = Switch
-								Blue = Calls
-								Red = Function Headers
-								Purple = Display/Input
 Start
-Main ()
-
-Declare Constant max_count = 20
+Declare Constant max_count = 10
 Declare floor1[max_count]
 Declare floor2[max_count]
 Declare floor3[max_count]
@@ -15,6 +8,10 @@ Declare const b_price = 150
 Declare const c_price = 175
 Declare total = 0
 Declare price = 0.0
+Declare string Username[names]
+Declare string Password[names]
+
+Main ()
  
 Display "Pick from....."
 input choice
@@ -22,7 +19,7 @@ Switch (choice)
 	a: Call signin
 	b. call signup
 	c. call guest
-	other try again
+	other. Display try again
     
     Call Pick_Dates(checkin_Date, checkout_Date)
     Call Room_Type(price)
@@ -31,13 +28,21 @@ Switch (choice)
 
 
 void signin ()
-	declare username
-	declare password
 	
+declare bool ValidUser
 	display "Please enter your username"
 	input username
 	display "Please enter your password"
 	input password
+	OPENFILE userinfo.txt
+	set VaildUser = Compare userinfo.txt to +username && +password
+	If VaildUser == true
+	Display "Welcome User" 
+	//Display "Your Point count is 100"
+
+END
+		
+
 
 void signup ()
 	declare username
@@ -46,17 +51,22 @@ void signup ()
 	display "                                                                      "
 	display "                                                                      "
 	display "**********************************************************************"
-	display "Please enter your username"
+	display "Please enter your wanted username"
 	input username
-	display "Please enter your password"
+	display "Please enter your wanted password"
 	input password
-	
+OPENFILE userinfo.txt
+set VaildUser = Compare userinfo.txt to +username && +password
+If VaildUser == true
+	Display "Welcome New User" 
+	//Display "Your Point Count is 0"
+END
 	
 void guest ()
 	declare username
 	declare password
 	Display "Welcome guest, no sign-in required"
-
+END 
 
 int Pick_Dates (checkin_Date,checkout_Date)
 do {
@@ -72,28 +82,52 @@ Display "Input Checkout date"
 while (checkout_Date > 2 AND checkout_Date < 31)
 
 
+END
+
 
 string Room_Type (a_price,b_price,c_price)
 Declare int available 
 Switch (room_type)
 	a. Single...
-	Price, Random picked location based on type
+
 	price = a_price
 	Available = random(1-20)
 	Display “There are “+available “rooms available for your dates”
 	b. Double....
-	Price, Random picked location based on type
-	price = b_price
+		price = b_price
 Available = random(1-20)
 	Display “There are “+available “rooms available for your dates”
 	c. Suite...
-	Price, Random picked location based on type
+	
 	price = c_price
 Available = random(1-20)	
 	Display “There are “+available “rooms available for your dates”
+END
 
-int Receipt (price,total,checkin_Date,checkout_Date)
+
+int Receipt (price,total,checkin_Date,checkout_Date,username)
   Display "--- Receipt ---"
-    Display "Room type price: $" + price
-    Display "Total nights: " + (checkout_Date - checkin_Date)
-    Display "Total amount due: $" + total
+  Display "User:"+username
+  Display "Check In Date: " << "12/"<<checkin_Date<<"/2024" <<endl;
+  Display "Check Out Date: " << "12/"<<checkout_Date<<"/2024" <<endl;	
+  Display "Room type price: $" + price
+  Display "Total nights: " + (checkout_Date - checkin_Date)
+  Display "Total amount due: $" + total
+
+END
+
+
+int RandomNumber()
+	int occupied = random() %2
+	return occupied
+END
+
+void PickRoom()
+	declare choice
+Display " 101		102		103		104		105		106"
+Display " rooms[1]	[0]	[1]	[0]	[0]	[0]"
+
+rooms[1] = Taken
+
+
+      
