@@ -10,7 +10,7 @@ using namespace std;
 void userSignIn();
 void userSignUp();
 void Room_Type();
-int Receipt(int, int, int, int);
+void Receipt(int, int, int, int);
 bool getOccupied();
 void pickRoom(int);
 
@@ -35,16 +35,16 @@ int main()
 
     do
     {
-        cout << "------------------------------" << endl;
+        cout << "*****************************************" << endl;
         cout << setw(16) << "Menu:" << endl << endl;
         cout << "a) User Sign In" << endl;
         cout << "b) User Sign Up" << endl;
-        cout << "------------------------------" << endl;
+        cout << "*****************************************" << endl;
         cin >> choice;
 
         while(choice != 'a' || choice != 'b')
         {
-            "Error: Please choose either 'a' or 'b'" << endl;
+            cout << "Error: Please choose either 'a' or 'b'" << endl;
             cin >> choice;
         }
 
@@ -62,6 +62,20 @@ int main()
     } while(tolower(again) == 'y');
 
     return 0;
+}
+
+
+void signup()
+{
+    string username;
+    string password;
+
+    cout << "Welcome to sign up for Hotel Overlook" << endl << endl;
+	cout << "*****************************************" << endl;
+	cout << "Please enter your username" << endl;
+	cin >> username;
+	cout << "Please enter your password" << endl;
+	cin >> password;
 }
 
 
@@ -90,45 +104,40 @@ void Pick_Dates()
 }
 
 
-void signup()
-{
-
-	display "Welcome to Signup for Hotel Overlook"
-	display "                                                                      "
-	display "                                                                      "
-	display "**********************************************************************"
-	display "Please enter your username"
-	input username
-	display "Please enter your password"
-	input password
-}
-
-
 void Room_Type()
 {
     int price;
     bool occupied;
-    string room_type;
+    int room_type;
 
     cout << "Choose room type:" << endl;
-    cout << "1) Single" << endl "2) Double" << endl << "3) Suite" << endl;
+    cout << "1) Single (1 Bed 1 Bath)" << endl << "2) Double (2 Beds 1 Bath)" << endl << "3) Suite (3 Beds 2 Baths)" << endl;
     cin >> room_type;
+
+    while(room_type != 1 || room_type != 2 || room_type != 3)
+    {
+        cout << "Error: Choose between the numbers 1, 2, or 3" << endl;
+        cin >> room_type;
+    }
 
     switch(room_type)
     {
-        case 1: Single...
+        case 1:
+        cout << "You picked the room type: Single (1 Bed 1 Bath)" << endl;
         price = A_PRICE;     // Price, Random picked location based on type
-        randomNumber();
+        occupied = getOccupied();
         break;
 
-        case 2: Double...
+        case 2:
+        cout << "You picked the room type: Double (2 Beds 1 Bath)" << endl;
         price = B_PRICE;     // Price, Random picked location based on type
-        occupied = randomNumber();
+        occupied = getOccupied();
         break;
 
-        case 3: Suite...
+        case 3:
+        cout << "You picked the room type: Suite (3 Beds 2 Baths)" << endl;
         price = C_PRICE;     // Price, Random picked location based on type
-        occupied = randomNumber();
+        occupied = getOccupied();
         break;
     }
 	cout << "There are " << occupied << " rooms available for your dates" << endl;
@@ -137,12 +146,12 @@ void Room_Type()
 }
 
 
-int Receipt(price,total,checkin_Date,checkout_Date)
+void Receipt(price,total,checkin_Date,checkout_Date)
 {
-    Display "--- Receipt ---"
-    Display "Room type price: $" + price
-    Display "Total nights: " + (checkout_Date - checkin_Date)
-    Display "Total amount due: $" + total
+    cout << "--- Receipt ---" << endl;
+    cout << "Room type price: $" << price << endl;
+    cout << "Total nights: " << (checkout_Date - checkin_Date) << endl;
+    cout << "Total amount due: $" << total << endl;
 }
 
 
@@ -155,6 +164,9 @@ bool getOccupied()
     {
         occupied = rand() % 2;
 
+        floor1[][]
+        floor2[][]
+        floor3[][]
     }
 }
 
