@@ -14,9 +14,11 @@ int Receipt(int, int, int, int);
 bool getOccupied();
 void pickRoom(int);
 
-const int MAX_FLOORS = 3;
 const int MAX_ROOMS = 10;
-int hotel[MAX_FLOORS][MAX_ROOMS];
+const int ROOM_TYPES = 3;
+int floor1[MAX_ROOMS][ROOM_TYPES];
+int floor2[MAX_ROOMS][ROOM_TYPES];
+int floor3[MAX_ROOMS][ROOM_TYPES];
 
 bool occupied[MAX_ROOMS];
 
@@ -37,9 +39,14 @@ int main()
         cout << setw(16) << "Menu:" << endl << endl;
         cout << "a) User Sign In" << endl;
         cout << "b) User Sign Up" << endl;
-        cout << "c) Guest Access" << endl;
         cout << "------------------------------" << endl;
         cin >> choice;
+
+        while(choice != 'a' || choice != 'b')
+        {
+            "Error: Please choose either 'a' or 'b'" << endl;
+            cin >> choice;
+        }
 
         switch (tolower(choice)) {
             case 'a':
@@ -47,9 +54,6 @@ int main()
                 break;
             case 'b':
                 userSignUp();
-                break;
-            case 'c':
-                guestAccess();
                 break;
     }
 
@@ -61,25 +65,28 @@ int main()
 }
 
 
-void signin()
+void Pick_Dates()
 {
+    int Checkin_Date;
+    int Checkout_Date;
 
-	display "Please enter your username"
-	input username
-	display "Please enter your password"
-	input password
+	cout << "Input check in date" << endl;
+	cin >> Checkin_Date;
 
-	do
+	while(Checkin_Date < 1 && Checkin_Date > 30)
     {
-	Display "Input checkin date"
-	input Checkin_Date
-    } while(checkin_Date > 1 AND checkin_Date < 31);
+        cout << "Error: The date has to be in the range of 1-30" << endl;
+        cin >> Checkin_Date;
+    }
 
-    do
+    cout << "Input check out date" << endl;
+    cin >> Checkout_Date;
+
+    while(Checkout_Date <= Checkin_Date && Checkout_Date > 30)
     {
-        Display "Input Checkout date"
-        input Checkout_Date
-    } while(checkout_Date > 2 AND checkout_Date < 31);
+        cout << "Error: The date has to be in the range of " << (Checkin_Date + 1) << "-30" << endl;
+        cin >> Checkout_Date;
+    }
 }
 
 
@@ -108,6 +115,7 @@ void Room_Type()
     cin >> room_type;
 
     switch(room_type)
+    {
         case 1: Single...
         price = A_PRICE;     // Price, Random picked location based on type
         randomNumber();
@@ -122,6 +130,7 @@ void Room_Type()
         price = C_PRICE;     // Price, Random picked location based on type
         occupied = randomNumber();
         break;
+    }
 	cout << "There are " << occupied << " rooms available for your dates" << endl;
 
 	pickRoom(occupied);
