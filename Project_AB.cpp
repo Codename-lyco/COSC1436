@@ -55,7 +55,9 @@ int main()
             case 'b':
                 userSignUp();
                 break;
-    }
+                                 }
+
+    Receipt(price,total,checkin_Date,checkout_Date)
 
     cout << "(y/n)" << endl;
     cin >> again;
@@ -76,6 +78,8 @@ void signup()
 	cin >> username;
 	cout << "Please enter your password" << endl;
 	cin >> password;
+
+	Pick_Dates();
 }
 
 
@@ -101,6 +105,8 @@ void Pick_Dates()
         cout << "Error: The date has to be in the range of " << (Checkin_Date + 1) << "-30" << endl;
         cin >> Checkout_Date;
     }
+
+    Room_Type();
 }
 
 
@@ -146,15 +152,6 @@ void Room_Type()
 }
 
 
-void Receipt(price,total,checkin_Date,checkout_Date)
-{
-    cout << "--- Receipt ---" << endl;
-    cout << "Room type price: $" << price << endl;
-    cout << "Total nights: " << (checkout_Date - checkin_Date) << endl;
-    cout << "Total amount due: $" << total << endl;
-}
-
-
 bool getOccupied()
 {
     srand(time(0));
@@ -168,6 +165,7 @@ bool getOccupied()
         floor2[][]
         floor3[][]
     }
+    return occupied;
 }
 
 
@@ -183,3 +181,13 @@ void pickRoom(occupied)
         }
     }
 }
+
+
+void Receipt(price,total,checkin_Date,checkout_Date)
+{
+    cout << "--- Receipt ---" << endl;
+    cout << "Room type price: $" << price << endl;
+    cout << "Total nights: " << (checkout_Date - checkin_Date) << endl;
+    cout << "Total amount due: $" << total << endl;
+}
+
