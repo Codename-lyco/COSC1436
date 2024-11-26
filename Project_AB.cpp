@@ -66,8 +66,22 @@ int main()
     return 0;
 }
 
+void userSignIn()
+{
+    string username;
+    string password;
 
-void signup()
+    cout << "Welcome to sign up for Hotel Overlook" << endl << endl;
+	cout << "*****************************************" << endl;
+	cout << "Please enter your username" << endl;
+	cin >> username;
+	cout << "Please enter your password" << endl;
+	cin >> password;
+
+	Pick_Dates();
+}
+
+void userSignUp()
 {
     string username;
     string password;
@@ -83,7 +97,7 @@ void signup()
 }
 
 
-void Pick_Dates()
+int Pick_Dates()
 {
     int Checkin_Date;
     int Checkout_Date;
@@ -107,10 +121,12 @@ void Pick_Dates()
     }
 
     Room_Type();
+
+    return;
 }
 
 
-void Room_Type()
+int Room_Type()
 {
     int price;
     bool occupied;
@@ -130,20 +146,17 @@ void Room_Type()
     {
         case 1:
         cout << "You picked the room type: Single (1 Bed 1 Bath)" << endl;
-        price = A_PRICE;     // Price, Random picked location based on type
-        occupied = getOccupied();
+        occupied = getOccupied(A_PRICE);
         break;
 
         case 2:
         cout << "You picked the room type: Double (2 Beds 1 Bath)" << endl;
-        price = B_PRICE;     // Price, Random picked location based on type
-        occupied = getOccupied();
+        occupied = getOccupied(B_PRICE);
         break;
 
         case 3:
         cout << "You picked the room type: Suite (3 Beds 2 Baths)" << endl;
-        price = C_PRICE;     // Price, Random picked location based on type
-        occupied = getOccupied();
+        occupied = getOccupied(C_PRICE);
         break;
     }
 	cout << "There are " << occupied << " rooms available for your dates" << endl;
@@ -157,19 +170,25 @@ bool getOccupied()
     srand(time(0));
     bool occupied;
 
-    for (int )
+    for(int row; row <= 3; row++)
     {
         occupied = rand() % 2;
 
-        floor1[][]
-        floor2[][]
-        floor3[][]
+        for(int col; col <= MAX_ROOMS; col++)
+        {
+            if()
+                floor1[row][col];
+            else if()
+                floor2[row][col];
+            else
+                floor3[row][col];
+        }
     }
     return occupied;
 }
 
 
-void pickRoom(occupied)
+int pickRoom(occupied)
 {
     int choice;
     for (int row = 0; row <= MAX_ROOMS; row++)
