@@ -14,11 +14,9 @@ void Receipt(int, int, int, int);
 bool getOccupied();
 void pickRoom(int);
 
+const int MAX_FLOORS = 3;
 const int MAX_ROOMS = 10;
-const int ROOM_TYPES = 3;
-int floor1[MAX_ROOMS][ROOM_TYPES];
-int floor2[MAX_ROOMS][ROOM_TYPES];
-int floor3[MAX_ROOMS][ROOM_TYPES];
+int hotel[MAX_FLOORS][MAX_ROOMS];
 
 bool occupied[MAX_ROOMS];
 
@@ -66,7 +64,7 @@ int main()
     return 0;
 }
 
-void userSignIn()
+int userSignIn()
 {
     string username;
     string password;
@@ -81,7 +79,7 @@ void userSignIn()
 	Pick_Dates();
 }
 
-void userSignUp()
+int userSignUp()
 {
     string username;
     string password;
@@ -146,17 +144,17 @@ int Room_Type()
     {
         case 1:
         cout << "You picked the room type: Single (1 Bed 1 Bath)" << endl;
-        occupied = getOccupied(A_PRICE);
+        occupied = getOccupied();
         break;
 
         case 2:
         cout << "You picked the room type: Double (2 Beds 1 Bath)" << endl;
-        occupied = getOccupied(B_PRICE);
+        occupied = getOccupied();
         break;
 
         case 3:
         cout << "You picked the room type: Suite (3 Beds 2 Baths)" << endl;
-        occupied = getOccupied(C_PRICE);
+        occupied = getOccupied();
         break;
     }
 	cout << "There are " << occupied << " rooms available for your dates" << endl;
@@ -169,6 +167,8 @@ bool getOccupied()
 {
     srand(time(0));
     bool occupied;
+
+
 
     for(int row; row <= 3; row++)
     {
@@ -188,15 +188,15 @@ bool getOccupied()
 }
 
 
-int pickRoom(occupied)
+void pickRoom(occupied)
 {
     int choice;
-    for (int row = 0; row <= MAX_ROOMS; row++)
+    for (int row = 0; row <= MAX_FLOORS; row++)
     {
-        cout << "Rooms: " << hotel[][] << " ";
-        for (int column = 0; column <= MAX_ROOMS; column++)
+        for (int col = 0; col <= MAX_ROOMS; col++)
         {
-
+            cout << "Rooms: " << hotel[row][col] << " " << endl;
+            cout << "Status: " << occupied[col] << " " << endl << endl;
         }
     }
 }
