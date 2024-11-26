@@ -7,18 +7,18 @@
 #include <cstdlib>
 using namespace std;
 
-void userSignIn();
-void userSignUp();
-void Room_Type();
-void Receipt(int, int, int, int);
+int userSignIn();
+int userSignUp();
+int Room_Type();
+void Receipt(int, float, int, int);
 bool getOccupied();
-void pickRoom(int);
+void pickRoom(int, int);
 
 const int MAX_FLOORS = 3;
 const int MAX_ROOMS = 10;
 int hotel[MAX_FLOORS][MAX_ROOMS];
 
-bool occupied[MAX_ROOMS];
+int occupied[MAX_ROOMS];
 
 const int A_PRICE = 80;
 const int B_PRICE = 150;
@@ -55,7 +55,7 @@ int main()
                 break;
                                  }
 
-    Receipt(price,total,checkin_Date,checkout_Date)
+    Receipt(price,total,Checkin_Date,Checkout_Date)
 
     cout << "(y/n)" << endl;
     cin >> again;
@@ -127,7 +127,6 @@ int Pick_Dates()
 int Room_Type()
 {
     int price;
-    bool occupied;
     int room_type;
 
     cout << "Choose room type:" << endl;
@@ -144,51 +143,39 @@ int Room_Type()
     {
         case 1:
         cout << "You picked the room type: Single (1 Bed 1 Bath)" << endl;
-        occupied = getOccupied();
+        occupied[MAX_ROOMS] = getOccupied();
         break;
 
         case 2:
         cout << "You picked the room type: Double (2 Beds 1 Bath)" << endl;
-        occupied = getOccupied();
+        occupied[MAX_ROOMS] = getOccupied();
         break;
 
         case 3:
         cout << "You picked the room type: Suite (3 Beds 2 Baths)" << endl;
-        occupied = getOccupied();
+        occupied[MAX_ROOMS] = getOccupied();
         break;
     }
 	cout << "There are " << occupied << " rooms available for your dates" << endl;
 
-	pickRoom(occupied);
+	pickRoom(occupied, MAX_ROOMS);
 }
 
 
 bool getOccupied()
 {
     srand(time(0));
-    bool occupied;
 
+    bool occupied[MAX_ROOMS];
 
+    for(int index; index <= MAX_ROOMS; index++)
+        occupied[MAX_ROOMS] = rand() % 2;
 
-    for(int row; row <= 3; row++)
-    {
-        occupied = rand() % 2;
-
-        for(int col; col <= MAX_ROOMS; col++)
-        {
-            if()
-                floor1[row][col];
-            else if()
-                floor2[row][col];
-            else
-                floor3[row][col];
-        }
-    }
-    return occupied;
+    return occupied[MAX_ROOMS];
 }
 
 
-void pickRoom(occupied)
+void pickRoom(occupied, MAX_ROOMS)
 {
     int choice;
     for (int row = 0; row <= MAX_FLOORS; row++)
@@ -202,11 +189,11 @@ void pickRoom(occupied)
 }
 
 
-void Receipt(price,total,checkin_Date,checkout_Date)
+void Receipt(price,total,Checkin_Date,Checkout_Date)
 {
     cout << "--- Receipt ---" << endl;
     cout << "Room type price: $" << price << endl;
-    cout << "Total nights: " << (checkout_Date - checkin_Date) << endl;
-    cout << "Total amount due: $" << total << endl;
+    cout << "Total nights: " << (Checkout_Date - Checkin_Date) << endl;
+    cout << "Total amount due: $" << (total * (Checkout_Date - Checkin_Date) * 0.08) << endl;
 }
 
